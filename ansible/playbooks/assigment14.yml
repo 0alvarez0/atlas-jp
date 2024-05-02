@@ -1,0 +1,25 @@
+---
+- name: running my first ansible playbook
+  hosts: dev:qa
+  become: yes
+  tasks:
+  - name: Creating a new user named "dev"
+    user: 
+        name: dev
+        state: present 
+      
+  - name: create devfile file
+    file:
+        path: /tmp/dev-report
+        state: touch
+        owner: dev
+        group: dev
+        mode: '0664'
+
+#“This is my test to add a new line to file with a Ansible Playbook”
+  - name: add line to playbook
+    lineinfile:
+      path: /tmp/dev-report
+      line: “This is my test to add a new line to file with a Ansible Playbook”
+      create: yes
+
